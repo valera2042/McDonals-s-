@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<style>
+form {
+    margin: auto;
+    width: 35%;
+}
+
+.result {
+    margin: auto;
+    width: 35%;
+    border: 1px solid #ccc;
+}
+</style>
+
+<head>
+    <title>Eat healthy!! </title>
+    <h1>Eat healthy at McDonald's!!<h1>
+    <h2>Outcome 1: food is safe to eat<h2>
+    <h2>Outcome 2: food is not safe to eat<h2>
+    <h2>Outcome 3: food is not safe to eat<h2>
+
+</head>
+<form action="{{ url_for('main') }}" method="POST">
+    <fieldset>
+        <legend>Input values:</legend>
+        <h3>Please input the % of Daily Value that is displayed on the ticket of your food.. <h3>
+        
+        <br>
+        <br> Fat (% Daily Value):
+        <input name="Fat" type="number" required>
+        <br>
+        <br> Sugar (% Daily Value):
+        <input name="Sugar" type="number" required>
+        <br>
+        <br>
+        <input type="submit">
+    </fieldset>
+</form>
+<br>
+<div class="result" align="center">
+    {% if result %}
+    	{% for variable, value in original_input.items() %}
+    		<b>{{ variable }}</b> : {{ value }}
+    	{% endfor %}
+		<br>
+    	<br> Is this item healthy? (1: yes:, 2: no, 3: no):
+   		<p style="font-size:50px">{{ result }}</p>
+    {% endif %}
+</div>
+
+</html>
